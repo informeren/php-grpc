@@ -7,6 +7,6 @@ RUN apk add --no-cache --virtual .build-deps \
         linux-headers \
         php7-dev \
         php7-pear \
- && pecl install grpc > /dev/null \
+ && pecl install grpc \
  && apk del --no-cache .build-deps \
  && docker-php-ext-enable grpc
