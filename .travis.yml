@@ -1,0 +1,12 @@
+services:
+  docker
+
+install:
+  - docker build -t phpgrpc .
+  - docker run -d --name phpgrpc phpgrpc
+
+script:
+  - docker ps | grep -q phpgrpc
+  - docker exec -it phpgrpc test -f /usr/local/lib/php/extensions/no-debug-non-zts-20180731/grpc.so
+  - docker exec -it phpgrpc test -f /usr/local/etc/php/conf.d/docker-php-ext-grpc.ini
+
